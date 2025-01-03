@@ -15,21 +15,27 @@ const LogIn = (props) => {
 				</CTA>
 				<BackgroundImage />
 			</Content>
+			<Info src="/images/info2.png" alt="" />
+			<Description2>Watch the way you want</Description2>
+			<Note>
+				Discover the streaming home of Disney, Pixar, Marvel, Star Wars,
+				National Geographic and entertainment with Star on Disney+.
+			</Note>
+			<WaystoWatch src="/images/ways2watch.webp" alt="" />
 		</Container>
 	);
 };
 
 const Container = styled.section`
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
-	height: 100vh;
-`;
-const Content = styled.div`
-	margin-bottom: 10vh;
 	width: 100%;
-	position: relative;
+	overflow-y: auto; /* Allow scrolling */
+`;
+
+const Content = styled.div`
+	width: 100%;
 	min-height: 100vh;
 	box-sizing: border-box;
 	display: flex;
@@ -37,13 +43,12 @@ const Content = styled.div`
 	align-items: center;
 	flex-direction: column;
 	padding: 80px 40px;
-	height: 100%;
 `;
 
 const BackgroundImage = styled.div`
 	background-image: url('/images/new-login-bg.webp');
 	z-index: -1;
-	height: 100%;
+	height: 100vh;
 	background-position: top;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -91,14 +96,48 @@ const SignUp = styled.a`
 	transition: transform 0.2s ease-in-out;
 	cursor: pointer;
 
-	&: hover {
+	&:hover {
 		transform: scale(1.02);
 	}
 `;
 
 const Description = styled.p`
-	color: #f9f9f9;
+	color: hsla(0, 0%, 95.3%, 1);
 	font-weight: bold;
 	font-size: 28px;
 `;
+
+const Info = styled.img`
+	width: 100%;
+	margin-top: -55px;
+	padding: 40px 0;
+`;
+const Description2 = styled.h2`
+	font-size: 42px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	text-align: center;
+	letter-spacing: -0.4px;
+	line-height: 42px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 45px;
+`;
+const Note = styled.p`
+	font-size: 21px;
+	color: #8f98b2;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 24px;
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: -12px;
+`;
+const WaystoWatch = styled.img`
+	width: 80%;
+	margin: 48px auto;
+	display: block;
+`;
+
 export default LogIn;
