@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import FAQ from './FAQ';
 
 const LogIn = (props) => {
 	return (
@@ -16,12 +17,54 @@ const LogIn = (props) => {
 				<BackgroundImage />
 			</Content>
 			<Info src="/images/info2.png" alt="" />
-			<Description2>Watch the way you want</Description2>
-			<Note>
+
+			<Description2Title>Watch the way you want</Description2Title>
+			<Description2>
 				Discover the streaming home of Disney, Pixar, Marvel, Star Wars,
 				National Geographic and entertainment with Star on Disney+.
-			</Note>
+			</Description2>
 			<WaystoWatch src="/images/ways2watch.webp" alt="" />
+
+			<Description3Title>Exclusive Originals</Description3Title>
+			<Description3>
+				Movies, series and documentaries you can't see anywhere else, from the
+				world's greatest storytellers.
+			</Description3>
+			<MoviesAndSeries src="/images/movies&series.webp" alt="" />
+
+			<Description4Title>Compatible Device</Description4Title>
+			<Devices>
+				<TV>
+					<TVImg src="/images/tv.webp" alt="tv" />
+					<TVDescTitle>TV</TVDescTitle>
+					<DeviceList>
+						<li>Amazon Fire TV</li>
+						<li>Android TV</li>
+						<li>Apple TV</li>
+						<li>Chromecast</li>
+						<li>LG TV</li>
+						<li>Samsung</li>
+					</DeviceList>
+				</TV>
+				<Computer>
+					<ComputerImg src="/images/computer.webp" alt="computer" />
+					<ComputerDescTitle>Computer</ComputerDescTitle>
+					<DeviceList>
+						<li>Chrome OS</li>
+						<li>MacOS</li>
+						<li>Windows PC</li>
+					</DeviceList>
+				</Computer>
+				<Mobile>
+					<MobileImg src="/images/mobile.webp" alt="mobile" />
+					<MobileDescTitle>Mobile</MobileDescTitle>
+					<DeviceList>
+						<li>Android Phones &amp; Tablets</li>
+						<li>iPhone and iPad</li>
+					</DeviceList>
+				</Mobile>
+			</Devices>
+			<FAQ />
 		</Container>
 	);
 };
@@ -112,7 +155,8 @@ const Info = styled.img`
 	margin-top: -55px;
 	padding: 40px 0;
 `;
-const Description2 = styled.h2`
+
+const Description2Title = styled.h2`
 	font-size: 42px;
 	font-weight: 600;
 	font-family: 'Inter', sans-serif;
@@ -124,7 +168,8 @@ const Description2 = styled.h2`
 	margin-right: 40px;
 	margin-top: 45px;
 `;
-const Note = styled.p`
+
+const Description2 = styled.p`
 	font-size: 21px;
 	color: #8f98b2;
 	font-weight: 500;
@@ -134,10 +179,147 @@ const Note = styled.p`
 	margin-right: 80px;
 	margin-top: -12px;
 `;
+
 const WaystoWatch = styled.img`
 	width: 80%;
 	margin: 48px auto;
 	display: block;
+`;
+
+const Description3Title = styled.h2`
+	font-size: 42px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	text-align: center;
+	letter-spacing: -0.4px;
+	line-height: 42px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 45px;
+`;
+
+const Description3 = styled.p`
+	font-size: 21px;
+	color: #8f98b2;
+	font-weight: 500;
+	letter-spacing: 0;
+	line-height: 24px;
+	margin-left: 80px;
+	margin-right: 80px;
+	margin-top: -12px;
+`;
+
+const MoviesAndSeries = styled.img`
+	width: 80%;
+	margin: 48px auto;
+	display: block;
+	margin-bottom: 40px;
+`;
+
+const Description4Title = styled.h2`
+	font-size: 42px;
+	font-weight: 600;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	text-align: center;
+	letter-spacing: -0.4px;
+	line-height: 42px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 80px;
+`;
+
+const Devices = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0px;
+	justify-items: center; /* Ensures each child is centered within its column */
+	align-items: flex-start;
+	margin: 37px 56px 96px;
+	width: 100%;
+	max-width: 1200px; /* optional: keeps layout from getting too wide */
+	margin-left: auto;
+	margin-right: auto;
+`;
+
+const TV = styled.div`
+	/* We can simply use flex or block here unless you need a grid. */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+`;
+
+const TVImg = styled.img`
+	aspect-ratio: 29/20;
+	height: 5rem;
+	margin: 0 auto;
+`;
+
+const TVDescTitle = styled.h2`
+	margin-top: 40px;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 20px;
+`;
+
+const Computer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+`;
+
+const ComputerImg = styled.img`
+	aspect-ratio: 27/16;
+	height: 5rem;
+	margin: 0 auto;
+`;
+
+const ComputerDescTitle = styled.h2`
+	margin-top: 40px;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 20px;
+`;
+
+const Mobile = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+`;
+
+const MobileImg = styled.img`
+	aspect-ratio: 5/8;
+	height: 5rem;
+	margin: 0 auto;
+`;
+
+const MobileDescTitle = styled.h2`
+	margin-top: 40px;
+	font-family: 'Inter', sans-serif;
+	color: #e1e6f0;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 20px;
+`;
+
+const DeviceList = styled.ul`
+	list-style: none; /* remove default bullets */
+	padding: 0;
+	margin-top: 16px;
+	font-size: 18px;
+	font-family: 'Inter', sans-serif;
+	font-weight: 300;
+	line-height: 37px;
+	color: #8f98b2;
+	text-align: center;
 `;
 
 export default LogIn;
