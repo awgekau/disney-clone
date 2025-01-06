@@ -1,21 +1,26 @@
 import styled from 'styled-components';
 import FAQ from './FAQ';
 
-const LogIn = (props) => {
+const LogIn = () => {
 	return (
 		<Container>
+			{/* Absolutely positioned inside Container so it doesn’t push content down */}
+			<ButtonWrapper>
+				<LogInButton>Log In</LogInButton>
+			</ButtonWrapper>
+
 			<Content>
 				<CTA>
 					<CTAlogoOne src="images/disney-plus-logo.webp" alt="" />
 					<Description>
-						Stream brand new Disney+ Originals,
-						<br />
-						blockbusters, binge-worthy series and more
+						Stream brand new Disney+ Originals, blockbusters, binge-worthy
+						series and more
 					</Description>
 					<SignUp>Sign Up Now</SignUp>
 				</CTA>
 				<BackgroundImage />
 			</Content>
+
 			<Info src="/images/info2.png" alt="" />
 
 			<Description2Title>Watch the way you want</Description2Title>
@@ -69,12 +74,63 @@ const LogIn = (props) => {
 	);
 };
 
+export default LogIn;
+
+/* ------------------------------
+   STYLED COMPONENTS
+------------------------------ */
+
+/* 1) Parent container is now position: relative
+      so absolutely positioned children don't push anything down */
 const Container = styled.section`
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
 	width: 100%;
-	overflow-y: auto; /* Allow scrolling */
+	overflow-y: auto; /* allow scrolling */
+`;
+
+/* 2) ButtonWrapper is absolute, so it won't push the logo or any content.
+      This mimics your snippet's top stretch, but doesn't fix to the viewport. */
+const ButtonWrapper = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0; /* Stretches across the container width if you want the same approach */
+	z-index: 1; /* On top of background */
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 16px;
+`;
+
+/* 3) LogInButton is EXACTLY the same styling from your snippet */
+const LogInButton = styled.a`
+	font-weight: 600;
+	color: #ffffff;
+	background-image: linear-gradient(93.87deg, #095ae6, #062794);
+	border: 0 solid;
+
+	width: 110px; /* same width */
+	text-align: center;
+	font-family: 'Inter', sans-serif;
+
+	font-size: 16px; /* same font size */
+
+	padding: 10px; /* same padding */
+
+	border-radius: 8px;
+	line-height: 20px;
+	transition: transform 0.2s ease-in-out;
+	cursor: pointer;
+
+	margin: 9px 35px 12px 0; /* same margins */
+
+	&:hover {
+		transform: scale(1.02);
+	}
 `;
 
 const Content = styled.div`
@@ -244,7 +300,6 @@ const Devices = styled.div`
 `;
 
 const TV = styled.div`
-	/* We can simply use flex or block here unless you need a grid. */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -321,5 +376,3 @@ const DeviceList = styled.ul`
 	color: #8f98b2;
 	text-align: center;
 `;
-
-export default LogIn;
