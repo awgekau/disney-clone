@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 import FAQ from './FAQ';
+import { auth, provider } from '../../src/firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 const LogIn = () => {
+	const handleAuth = () => {
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				console.log('User signed in:', result.user);
+			})
+			.catch((error) => {
+				console.error('Sign in error:', error);
+			});
+	};
 	return (
 		<Container>
 			{/* Absolutely positioned inside Container so it doesn’t push content down */}
 			<ButtonWrapper>
-				<LogInButton>Log In</LogInButton>
+				<LogInButton onClick={handleAuth}>Log In</LogInButton>
 			</ButtonWrapper>
 
 			<Content>
