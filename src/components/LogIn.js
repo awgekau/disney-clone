@@ -2,16 +2,41 @@ import styled from 'styled-components';
 import FAQ from './FAQ';
 import { auth, provider } from '../../src/firebase';
 import { signInWithPopup } from 'firebase/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import {
+	selectUserName,
+	selectUserEmail,
+	selectUserPhoto,
+	setUserLoginDetails,
+	setSignOutState,
+} from '../features/users/userSlice';
 
 const LogIn = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const userName = useSelector(selectUserName);
+	const userphoto = useSelector(selectUserPhoto);
+
 	const handleAuth = () => {
 		signInWithPopup(auth, provider)
 			.then((result) => {
-				console.log('User signed in:', result.user);
+				setUser(result.user);
 			})
 			.catch((error) => {
 				console.error('Sign in error:', error);
 			});
+	};
+
+	const setUser = (user) => {
+		dispatch(
+			setUserLoginDetails({
+				name: user.displayName,
+				email: user.email,
+				photo: user.photoURL,
+			})
+		);
 	};
 	return (
 		<Container>
