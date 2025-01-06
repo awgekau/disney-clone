@@ -21,14 +21,12 @@ const Header = () => {
 	// Watch for changes to the Firebase Auth user
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
-			if (user) {
+			if (user && user.displayName && user.email) {
 				setUser(user);
-				// If user logs in, redirect to /home
-				navigate('/home');
 			}
 		});
 		return () => unsubscribe();
-	}, [userName, navigate]);
+	}, [navigate]);
 
 	const setUser = (user) => {
 		dispatch(

@@ -23,6 +23,7 @@ const LogIn = () => {
 		signInWithPopup(auth, provider)
 			.then((result) => {
 				setUser(result.user);
+				navigate('/home');
 			})
 			.catch((error) => {
 				console.error('Sign in error:', error);
