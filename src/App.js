@@ -3,6 +3,7 @@ import LogIn from './components/LogIn';
 import Header from './components/Header';
 import Home from './components/Home';
 import './App.css';
+import Detail from './components/Detail';
 
 function App() {
 	return (
@@ -13,6 +14,7 @@ function App() {
 					{/* Use the `element` prop to specify the component */}
 					<Route path="/" element={<LogIn />} />
 					<Route path="/Home" element={<Home />} />
+					<Route path="/detail/:id" element={<Detail />} />
 				</Routes>
 			</Router>
 		</div>
