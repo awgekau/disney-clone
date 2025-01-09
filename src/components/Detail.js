@@ -7,9 +7,6 @@ import db from '../firebase';
 const Detail = () => {
 	const { id } = useParams();
 	const [detailData, setDetailData] = useState({});
-	const [showVideo, setShowVideo] = useState(false);
-
-	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		const fetchDetailData = async () => {
@@ -21,46 +18,19 @@ const Detail = () => {
 			} else {
 				console.log('No such document in Firestore!');
 			}
-			setIsLoading(false);
 		};
 
 		fetchDetailData();
 	}, [id]);
 
-	useEffect(() => {
-		let timer;
-		if (!showVideo) {
-			timer = setTimeout(() => {
-				setShowVideo(true);
-			}, 3000); // Show video after 3 seconds
-		}
-
-		return () => clearTimeout(timer); // Cleanup timer
-	}, [showVideo]);
-
-	const handleVideoEnd = () => {
-		// After video ends, switch back to the image
-		setShowVideo(false);
-	};
-
 	return (
 		<Container>
 			<Background>
-				{showVideo && detailData.backgroundVid ? (
-					<video
-						autoPlay
-						muted
-						onEnded={handleVideoEnd}
-						src={detailData.backgroundVid}
-						type="video/mp4"
-					/>
-				) : (
-					<img
-						alt={detailData.title}
-						src={detailData.backgroundImg}
-						loading="lazy"
-					/>
-				)}
+				<img
+					alt={detailData.title}
+					src={detailData.backgroundImg}
+					loading="lazy"
+				/>
 			</Background>
 
 			<ContentMeta>
@@ -76,6 +46,15 @@ const Detail = () => {
 						<img src="/images/play-icon-white.png" alt="" />
 						<span>Trailer</span>
 					</Trailer>
+					<AddList>
+						<span />
+						<span />
+					</AddList>
+					<GroupWatch>
+						<div>
+							<img src="/images/group-icon.png" alt="" />
+						</div>
+					</GroupWatch>
 				</Controls>
 				<SubTitle>{detailData.subTitle}</SubTitle>
 				<Description>{detailData.description}</Description>
@@ -101,8 +80,7 @@ const Background = styled.div`
 	top: 0px;
 	z-index: -1;
 
-	img,
-	video {
+	img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
@@ -180,6 +158,58 @@ const Trailer = styled(Player)`
 	background: rgba(0, 0, 0, 0.3);
 	border: 1px solid rgb(249, 249, 249);
 	color: rgb(249, 249, 249);
+`;
+
+const AddList = styled.div`
+	margin-right: 16px;
+	height: 44px;
+	width: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.6);
+	border-radius: 50%;
+	border: 2px solid white;
+	cursor: pointer;
+
+	span {
+		background-color: rgb(249, 249, 249);
+		display: inline-block;
+
+		&:first-child {
+			height: 2px;
+			transform: translate(1px, 0px) rotate(0deg);
+			width: 16px;
+		}
+
+		&:nth-child(2) {
+			height: 16px;
+			transform: translateX(-8px) rotate(0deg);
+			width: 2px;
+		}
+	}
+`;
+
+const GroupWatch = styled.div`
+	height: 44px;
+	width: 44px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background: white;
+
+	div {
+		height: 40px;
+		width: 40px;
+		background: rgb(0, 0, 0);
+		border-radius: 50%;
+
+		img {
+			width: 100%;
+		}
+	}
 `;
 
 const SubTitle = styled.div`
